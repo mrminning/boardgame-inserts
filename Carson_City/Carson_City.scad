@@ -24,53 +24,53 @@ layer3_height = 0;
 hex_bottom = 6;
 no_hex = 0;
 
-// Bottom layer
-// 38 mm kvar
-// 4 Player boxes 60 x 60 x 34 3x2
+// Bottom layer 304mm
+// Player boxes
 color("blue")
-tokenBox(size=[box_width/4, 60, layer1_height], hexBottom=no_hex, corner=3);
+tokenBox(size=[box_width/3-0.5, 50, layer1_height], hexBottom=no_hex, corner=3);
 color("red")
-translate([57, 0 ,0])
-tokenBox(size=[box_width/4, 60, layer1_height], hexBottom=no_hex, corner=3);
+translate([73, 0 ,0])
+tokenBox(size=[box_width/3-0.5, 50, layer1_height], hexBottom=no_hex, corner=3);
 color("blue")
-translate([114, 0 ,0])
-tokenBox(size=[box_width/4, 60, layer1_height], hexBottom=no_hex, corner=3);
+translate([146, 0 ,0])
+tokenBox(size=[box_width/3-0.5, 50, layer1_height], hexBottom=no_hex, corner=3);
+
 color("red")
-translate([171, 0 ,0])
-tokenBox(size=[box_width/4, 60, layer1_height], hexBottom=no_hex, corner=3);
-// 2 Player boxes 60 x 60 x 34 3x2
-translate([0, 62 ,0])
+translate([0, 52 ,0])
+tokenBox(size=[box_width/3-0.5, 50, layer1_height], hexBottom=no_hex, corner=3);
 color("blue")
-tokenBox(size=[box_width/4, 60, layer1_height], hexBottom=no_hex, corner=3);
+translate([73, 52 ,0])
+tokenBox(size=[box_width/3-0.5, 50, layer1_height], hexBottom=no_hex, corner=3);
 color("red")
-translate([57, 62 ,0])
-tokenBox(size=[box_width/4, 60, layer1_height], hexBottom=no_hex, corner=3);
+translate([146, 52 ,0])
+tokenBox(size=[box_width/3-0.5, 50, layer1_height], hexBottom=no_hex, corner=3);
+
+// Money
+translate([0, 104 ,0])
+tokenBox(size=[box_width, 56, layer1_height], hexBottom=no_hex, corner=3, containersX=4, containersY=1);
 
 // Setup tiles river, mountains, character, start tile, Bandits
-translate([0, 122 ,0])
+translate([0, 161 ,0])
 tokenBox(size=[box_width, 74, layer1_low_height], hexBottom=no_hex, corner=3, containersX=4, containersY=1);
 
 // Guns, Guns, Horses, Rails
-translate([0, 198 ,0])
+translate([0, 237 ,0])
 tokenBox(size=[box_width, 74, layer1_low_height], hexBottom=no_hex, corner=3, containersX=4, containersY=1);
 
-// Money
 
-
-// Top layer
+// Top layer 304mm
 // Horses & Houses
 translate([300, 0,0])
-tokenBox(size=[box_width, 74, layer1_height], hexBottom=no_hex, corner=3, containersX=2, containersY=1);
-
+tokenBox(size=[box_width, 76, layer1_height], hexBottom=no_hex, corner=3, containersX=2, containersY=1);
 
 // Characters
-translate([300, 138 ,0])
-tokenBox(size=[box_width, 74, layer1_height], hexBottom=no_hex, corner=3, containersX=3, containersY=1);
+translate([300, 78 ,0])
+tokenBox(size=[box_width, 76, layer1_height], hexBottom=no_hex, corner=3, containersX=3, containersY=1);
 
 // Bag
-translate([300, 214 ,0])
-tokenBox(size=[box_width, 53, layer1_height], hexBottom=no_hex, corner=3, containersX=1, containersY=1);
+translate([300, 155 ,0])
+tokenBox(size=[box_width, 98, layer1_height], hexBottom=no_hex, corner=3, containersX=1, containersY=1);
 
 // Tiles
-translate([300, 268 ,0])
+translate([300, 255 ,0])
 tokenBox(size=[box_width, 54, layer1_high_height], hexBottom=no_hex, corner=3, containersX=1, containersY=1);
