@@ -65,7 +65,7 @@ tokenBox(size=[box_width, 76, layer1_height], hexBottom=no_hex, corner=3, contai
 
 // Characters
 translate([300, 78 ,0])
-tokenBox(size=[box_width, 76, layer1_height], hexBottom=hex_bottom, corner=3, containersX=3, containersY=1);
+tokenBox(size=[box_width, 76, layer1_height], hexBottom=hex_bottom, corner=3, containersX=2, containersY=1);
 
 // Bag
 translate([300, 155 ,0])
