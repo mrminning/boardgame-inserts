@@ -65,12 +65,12 @@ tokenBox(size=[box_width, 76, layer1_height], hexBottom=no_hex, corner=3, contai
 
 // Characters
 translate([300, 78 ,0])
-tokenBox(size=[box_width, 76, layer1_height], hexBottom=no_hex, corner=3, containersX=3, containersY=1);
+tokenBox(size=[box_width, 76, layer1_height], hexBottom=hex_bottom, corner=3, containersX=3, containersY=1);
 
 // Bag
 translate([300, 155 ,0])
-tokenBox(size=[box_width, 98, layer1_height], hexBottom=no_hex, corner=3, containersX=1, containersY=1);
+tokenBox(size=[box_width, 97, layer1_height], hexBottom=hex_bottom, corner=3, containersX=1, containersY=1);
 
 // Tiles
 translate([300, 255 ,0])
-tokenBox(size=[box_width, 54, layer1_high_height], hexBottom=no_hex, corner=3, containersX=1, containersY=1);
+tokenBox(size=[box_width, 57, layer1_high_height], hexBottom=hex_bottom, corner=3, containersX=4, containersY=1);
