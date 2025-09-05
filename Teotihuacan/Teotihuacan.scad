@@ -1,5 +1,5 @@
 // Teotihuacan
-include <BoardGameSystem.scad>;
+include <../lib/BoardGameSystem.scad>;
 
 box_length = 286; // 4 lanes and 2 mm gutter
 lane_width = (box_length - 2) / 4;
@@ -47,10 +47,11 @@ buildings_width = 40;
 //tokenBox(size=[action_board_length-lane_width, buildings_width, layer1_height], hexBottom=no_hex, corner=3, containersX=2, containersY=1);
 
 // Resources: wood, gold, stone
-//tokenBox(size=[box_width-lane_width-buildings_width-1,(action_board_length-lane_width-1)/2,layer1_height], hexBottom=no_hex, corner=3, containersX=3, containersY=1);
+xsize = box_width-lane_width-buildings_width-1;
+tokenBoxDividers(size=[xsize,(action_board_length-lane_width-1)/2,layer1_height], hexBottom=no_hex, corner=3, containersX=[57,114], containersY=1);
 
 // Resources: Cacao
-tokenBox(size=[box_width-lane_width-buildings_width-1,(action_board_length-lane_width-1)/2,layer1_height], hexBottom=no_hex, corner=3, containersX=2, containersY=1);
+//tokenBox(size=[box_width-lane_width-buildings_width-1,(action_board_length-lane_width-1)/2,layer1_height], hexBottom=no_hex, corner=3, containersX=2, containersY=1);
 
 
 
