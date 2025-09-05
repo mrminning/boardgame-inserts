@@ -1,5 +1,5 @@
 // Carson City
-include <BoardGameSystem.scad>;
+include <../lib/BoardGameSystem.scad>;
 
 box_length = 307; // 4 lanes and 2 mm gutter
 lane_width = (box_length - 2) / 4;
