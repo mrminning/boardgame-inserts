@@ -42,35 +42,37 @@ module straightDivider(size=[92,68,1.4], corner=3, txtLabel="Divider", txtSize=8
 }
 
 
-
-module cardBox(size,corner=3,hexBottom=0, cutouts=10, wallThickness=1.2
-    , cutoutThickness=2){
-        difference() {
-            roundedBox(size, corner);
-            translate([wallThickness,wallThickness,wallThickness])
-                roundedBox([size[0]-wallThickness*2, size[1]-wallThickness*2, size[2]], corner-1);
-
-            if (cutouts>0){
-                for (i=[1:cutouts])
-                    translate([-5,20+i*10,size[2]-20])
-                        rotate([-30,0,0])
-                            cube ([size[0]+10,cutoutThickness,50]);
+module cardBox(size=[10,10,10], hexBottom=0, corner=0, 
+    containers=1, widthCutout=20, wallThickness=1.2, txtLabel="", txtSize=8, txtFont="Arial"){
+    difference() {
+        roundedBox(size,corner);
+        translate([wallThickness,wallThickness,wallThickness])
+            roundedBox([size[0]-wallThickness*2, size[1]-wallThickness*2, size[2]],corner-1);
+        translate([size[0]/2,size[1]/2,0.3])
+            linear_extrude(2)
+                text(txtLabel,size=txtSize, font=txtFont, halign="center", valign="center");
+        if (containers>0)
+        {
+            // Cut out
+            sectionWidth = size[0] / containers;
+            offset = sectionWidth/2 - widthCutout/2;
+            for (i=[0:containers-1]){
+                difference(){
+                    translate([(i*sectionWidth) + offset,0,0])
+                        cube([widthCutout,wallThickness,size[2]]);
+                }
             }
-
-            if (hexBottom>=1)
-            {
-                translate([5,5,-1])
-                    intersection(){
-                            roundedBox([size[0]-10, size[1]-10, wallThickness*2],corner-1);
-                            hexPlane(hexBottom,size[0],size[1],wallThickness*2);
-                        }
-            }        
         }
-        translate([2,size[1]-38.5,1])
-            rotate([-30,0,0])
-                cube ([size[0]-wallThickness*2,2,size[2]+8]);
-
+    }
+    if (containers>1)
+    {
+        // Dividers
+        for (i=[1:containers-1]){
+            translate([i*size[0]/containers,0,0]) cube([wallThickness,size[1],size[2]]);
+        }
+    }
 }
+
 
 /*full box with rounded corners*/
 module roundedBox(size=[10,10,10], corner=0){
