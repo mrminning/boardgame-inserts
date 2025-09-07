@@ -42,24 +42,35 @@ module straightDivider(size=[92,68,1.4], corner=3, txtLabel="Divider", txtSize=8
 }
 
 
-module cardBox(size=[10,10,10], hexBottom=0, corner=0, 
-    containers=1, widthCutout=20, wallThickness=1.2, txtLabel="", txtSize=8, txtFont="Arial"){
+module cardBox(size=[10,10,10], corner=0, containers=1, cutoutWidth=20, wallThickness=1.2, txtLabel="", txtSize=8, txtFont="Arial") {
+    boxLength = size[0];
+    boxDepth = size[1];
+    boxHeight = size[2];
+    sectionWidth = boxLength / containers;
+    threshold = (sectionWidth - cutoutWidth)/2 - corner*3;
+    if (threshold < 0) {
+        echo ("===========================================================================");
+        echo ("Warning: cutoutWidth too large for the number of containers.");
+        echo ("There will be artifacts in the corners.");
+        echo ("===========================================================================");
+    }
+
+    offset = sectionWidth/2 - cutoutWidth/2 - corner;
+
     difference() {
         roundedBox(size,corner);
-        translate([wallThickness,wallThickness,wallThickness])
-            roundedBox([size[0]-wallThickness*2, size[1]-wallThickness*2, size[2]],corner-1);
-        translate([size[0]/2,size[1]/2,0.3])
+        translate([wallThickness, wallThickness, wallThickness])
+            roundedBox([boxLength-wallThickness*2, boxDepth-wallThickness*2, boxHeight],corner-1);
+        translate([boxLength/2, boxDepth/2, 0.3])
             linear_extrude(2)
                 text(txtLabel,size=txtSize, font=txtFont, halign="center", valign="center");
         if (containers>0)
         {
             // Cut out
-            sectionWidth = size[0] / containers;
-            offset = sectionWidth/2 - widthCutout/2;
-            for (i=[0:containers-1]){
-                difference(){
+            for (i=[0:containers-1]) {
+                difference() {
                     translate([(i*sectionWidth) + offset,0,0])
-                        cube([widthCutout,wallThickness,size[2]]);
+                        cube([cutoutWidth+corner*2, wallThickness, boxHeight]);
                 }
             }
         }
@@ -67,8 +78,26 @@ module cardBox(size=[10,10,10], hexBottom=0, corner=0,
     if (containers>1)
     {
         // Dividers
-        for (i=[1:containers-1]){
-            translate([i*size[0]/containers,0,0]) cube([wallThickness,size[1],size[2]]);
+        for (i=[1:containers-1]) {
+            translate([i*sectionWidth, 0, 0]) cube([wallThickness, boxDepth, boxHeight]);
+        }
+
+        // Rounded corners
+        for (i=[0:containers-1]) {
+            // Left side
+            rotate([90, 0, 0])
+            translate([(i*sectionWidth) + offset, boxHeight - corner, -wallThickness])
+                cylinder(r=corner, h=wallThickness);
+            rotate([0, 0, 0])
+            translate([(i*sectionWidth) + offset, 0, 0])
+                cube([corner, wallThickness, boxHeight-corner]);
+            // Right side
+            rotate([90, 0, 0])
+            translate([(i*sectionWidth) + cutoutWidth + corner*2 + offset, boxHeight - corner, -wallThickness])
+                cylinder(r=corner, h=wallThickness);
+            rotate([0, 0, 0])
+            translate([(i*sectionWidth) + offset + cutoutWidth + corner, 0, 0])
+                cube([corner, wallThickness, boxHeight-corner]);
         }
     }
 }

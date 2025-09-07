@@ -10,3 +10,4 @@ Using as slightly modified https://github.com/beavisCZ/BoardGameSystem as lib to
 - https://github.com/beavisCZ/BoardGameSystem
 - Added tokenBoxDividers with variable wall positioning.
 - Added straightDivider for cardbox.
+- Added cardBox as tokenBox with cutouts.
