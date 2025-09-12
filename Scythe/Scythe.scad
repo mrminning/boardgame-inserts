@@ -51,7 +51,19 @@ encountercardsBox();
 // Gutter
 translate([171,261,0])
 midsizecardsBox();
-echo (box_width-130*2);
+translate([0,261,0])
+encountertokensBox();
+
+// Top layer 304mm
+color("white")
+translate([0,300,0])
+cube([box_length, box_width, 0.1]);
+
+// Player mats x5 280x110x18
+translate([0,303,0])
+cube([110, 280, 18]);
+
+
 
 
 // Player boxes x5 (Faction components and minis)
@@ -85,9 +97,13 @@ module midsizecardsBox() {
 //translate([0, 161 ,0])
 //tokenBox(size=[box_width, 74, layer1_low_height], hexBottom=no_hex, corner=3, containersX=4, containersY=1);
 
-// Player mats x5 180x110x18
-
-// Faction mats x5 250x90x10 (kan stå på högkant)
+// Encounter tokens
+module encountertokensBox() {
+    player_box_height = 40;
+    player_box_width = 84.5;
+    depth = 25;
+    tokenBox(size=[player_box_width, depth, player_box_height], hexBottom=no_hex, corner=3);
+}
 
 
 // Money and Resources (same size as player box) + multiplier tokens. 
@@ -106,4 +122,3 @@ module resourceBox() {
 
 // Top layer 304mm
 
-// Encounter tokens
