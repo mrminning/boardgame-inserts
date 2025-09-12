@@ -63,8 +63,12 @@ cube([box_length, box_width, 0.1]);
 translate([0,303,0])
 cube([110, 280, 18]);
 
+// Structure bonus tiles, Faction tile, Combat Cards
+translate([111,300,0])
+structureBox();
 
-
+translate([111,381.5,0])
+dialsCardsBox();
 
 // Player boxes x5 (Faction components and minis)
 module playerBox() {
@@ -86,16 +90,17 @@ module encountercardsBox() {
     cardBox(size=[player_box_length, player_box_width, player_box_height], containers=1, cutoutWidth=40, corner=3,txtLabel="Encounter cards", txtSize=8, txtFont="Arial");
 }
 
+// Cards: Objectives, Solo 57x87
 module midsizecardsBox() {
-    // Cards: Objectives, Solo 57x87
     color("pink")
     cardBox(size=[87*2+6, 25, 57+4], containers=2, cutoutWidth=30, corner=3);
-
 }
-// Cards: Combat 45x66
-// Cards: Encounters, Factory, Quickstart, River walk cards
-//translate([0, 161 ,0])
-//tokenBox(size=[box_width, 74, layer1_low_height], hexBottom=no_hex, corner=3, containersX=4, containersY=1);
+
+// Power dials & Cards: Factory, Quickstart, River walk cards
+module dialsCardsBox() {
+    tokenBoxDividers(size=[228, 181, 18], hexBottom=no_hex, corner=3,  containersX=[75]);
+    translate([0,120,0]) cube([75, wallThickness, 18]);
+}
 
 // Encounter tokens
 module encountertokensBox() {
@@ -105,7 +110,6 @@ module encountertokensBox() {
     tokenBox(size=[player_box_width, depth, player_box_height], hexBottom=no_hex, corner=3);
 }
 
-
 // Money and Resources (same size as player box) + multiplier tokens. 
 module resourceBox() {
     player_box_height = 40;
@@ -114,11 +118,7 @@ module resourceBox() {
     tokenBox(size=[player_box_width, player_box_length, player_box_height], hexBottom=no_hex, corner=3,  containersX=2, containersY=2);
 }
 
-// Structure bonus tiles
-
-// Map tiles x4
-
-// Power dials x2
-
-// Top layer 304mm
-
+// Structure bonus tiles, Faction tile, Combat Cards     228 x 81 x 18
+module structureBox() {
+    tokenBoxDividers(size=[228, 81, 18], hexBottom=no_hex, corner=3,  containersX=[52,104,156]);
+}
