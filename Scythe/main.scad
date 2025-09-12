@@ -26,9 +26,9 @@ module playerBox() {
     player_box_width = 84.5;
     player_box_length = 130;
     color("blue")
-    tokenBoxDividers(size=[player_box_width, player_box_length, player_box_height], hexBottom=no_hex, corner=3, containersX=[31]);
+    tokenBoxDividers(size=[player_box_width, player_box_length, player_box_height], hexBottom=no_hex, corner=3, containersX=[33]);
     color("blue")
-    translate([31,56,0]) cube([player_box_width-31,wallThickness,player_box_height]);
+    translate([33,56,0]) cube([player_box_width-33,wallThickness,player_box_height]);
 }
 
 
