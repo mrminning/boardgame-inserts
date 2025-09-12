@@ -82,23 +82,23 @@ module cardBox(size=[10,10,10], corner=0, containers=1, cutoutWidth=20, wallThic
             translate([i*sectionWidth, 0, 0]) cube([wallThickness, boxDepth, boxHeight]);
         }
 
-        // Rounded corners
-        for (i=[0:containers-1]) {
-            // Left side
-            rotate([90, 0, 0])
-            translate([(i*sectionWidth) + offset, boxHeight - corner, -wallThickness])
-                cylinder(r=corner, h=wallThickness);
-            rotate([0, 0, 0])
-            translate([(i*sectionWidth) + offset, 0, 0])
-                cube([corner, wallThickness, boxHeight-corner]);
-            // Right side
-            rotate([90, 0, 0])
-            translate([(i*sectionWidth) + cutoutWidth + corner*2 + offset, boxHeight - corner, -wallThickness])
-                cylinder(r=corner, h=wallThickness);
-            rotate([0, 0, 0])
-            translate([(i*sectionWidth) + offset + cutoutWidth + corner, 0, 0])
-                cube([corner, wallThickness, boxHeight-corner]);
-        }
+    }
+    // Rounded corners
+    for (i=[0:containers-1]) {
+        // Left side
+        rotate([90, 0, 0])
+        translate([(i*sectionWidth) + offset, boxHeight - corner, -wallThickness])
+            cylinder(r=corner, h=wallThickness);
+        rotate([0, 0, 0])
+        translate([(i*sectionWidth) + offset, 0, 0])
+            cube([corner, wallThickness, boxHeight-corner]);
+        // Right side
+        rotate([90, 0, 0])
+        translate([(i*sectionWidth) + cutoutWidth + corner*2 + offset, boxHeight - corner, -wallThickness])
+            cylinder(r=corner, h=wallThickness);
+        rotate([0, 0, 0])
+        translate([(i*sectionWidth) + offset + cutoutWidth + corner, 0, 0])
+            cube([corner, wallThickness, boxHeight-corner]);
     }
 }
 
