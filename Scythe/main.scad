@@ -37,7 +37,7 @@ module encountercardsBox() {
     player_box_width = 84.5;
     player_box_length = 130;
     color("pink")
-    cardBox(size=[player_box_length, player_box_width, player_box_height], containers=1, cutoutWidth=40, corner=3,txtLabel="Encounter cards", txtSize=8, txtFont="Arial");
+    cardBox(size=[player_box_length, player_box_width, player_box_height], containers=1, cutoutWidth=40, corner=3);
 }
 
 // Cards: Objectives, Solo 57x87
