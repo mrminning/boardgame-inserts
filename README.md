@@ -4,6 +4,13 @@ Using as slightly modified https://github.com/beavisCZ/BoardGameSystem as lib to
 
 ## Carson City
 
+## Scythe
+Build STLs with script
+```
+cd Scythe
+./buildAll.sh
+```
+
 ## Teotihucan
 
 ## lib
