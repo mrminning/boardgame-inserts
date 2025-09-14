@@ -8,7 +8,7 @@ empty_box_height = 96;
 hex_bottom = 6;
 no_hex = 0;
 wallThickness = 1.2;
-$fn = 200;
+$fn = $preview ? 32 : 128;
 
 
 // Game boards x2: Total size
