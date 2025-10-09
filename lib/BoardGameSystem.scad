@@ -1,8 +1,32 @@
 /* 
+    Based on
     BoardGame System v 1.0 31.3.2024 by Martin Kaspar
 */
 
-module divider(size=[92,68,1.4], corner=3, txtLabel="Divider", txtSize=8, txtFont="Arial"){
+module dividerCutout(size=[80,60,1.2], corner=3, cutoutWidth=30, cutoutDepth=40){
+    width = size[0];
+    height = size[1];
+    wallThickness = size[2];
+
+    difference(){
+        cube([width, height, wallThickness]);
+        translate([(width-cutoutWidth-corner)/2,0,0])
+            cube([cutoutWidth, cutoutDepth-(cutoutWidth/2), wallThickness]);
+        translate([(width-corner)/2,cutoutDepth-(cutoutWidth/2),0])
+            cylinder(r=(cutoutWidth-corner*2)/2, h=wallThickness);
+    }
+    translate([(width-cutoutWidth-corner)/2, corner, 0]) {
+        cylinder(r=corner, h=wallThickness);
+        cube([corner, height-corner, wallThickness]);
+    }
+    translate([(width-cutoutWidth-corner)/2+cutoutWidth, corner, 0]) {
+        cylinder(r=corner, h=wallThickness);
+        translate([-corner,0,0])
+        cube([corner, height-corner, wallThickness]);
+    }
+}
+
+module divider(size=[92,68,1.2], corner=3, txtLabel="Divider", txtSize=8, txtFont="Arial"){
     difference(){
         union(){
         roundedBox([size[0],size[1]-4,size[2]],corner);
@@ -23,7 +47,7 @@ module divider(size=[92,68,1.4], corner=3, txtLabel="Divider", txtSize=8, txtFon
    }   
 }
 
-module straightDivider(size=[92,68,1.4], corner=3, txtLabel="Divider", txtSize=8, txtFont="Arial"){
+module straightDivider(size=[92,68,1.2], corner=3, txtLabel="Divider", txtSize=8, txtFont="Arial"){
     difference(){
         union(){
         roundedBox([size[0],size[1]-4,size[2]],corner);
