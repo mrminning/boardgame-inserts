@@ -1,4 +1,4 @@
-//include<main.scad>;
+include<main.scad>;
 
 enemyMarkersBox();
 
@@ -23,3 +23,6 @@ horstKopkowBox();
 translate([56+67.5,95+95.5,0])
 rotate([0,0,0])
 redOrchestraBox();
+
+translate([135.5,95*3,0])
+kreisauCircleBox();

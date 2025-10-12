@@ -115,7 +115,27 @@ module horstKopkowBox() {
     // Event cards
     // Ally tiles
     // New item tiles
+module kreisauCircleBox() {
+    length = 285 - 135;
+    width = 285 - 95;
+    cutoutWidth = 20;
+    corner = 3;
+    offset = 95/2 - cutoutWidth/2 - corner;
 
+    difference() {
+        tokenBox(size=[length, width, layer_height], corner=corner);
+        translate([0,offset,0])
+            cube([1.2, cutoutWidth+(corner*2), layer_height]);        
+    }
+    translate([0,offset+cutoutWidth/2+corner,0])
+        cutoutFiller(cutoutWidth=cutoutWidth, corner=corner, cutoutHeight=layer_height, wallThickness=1.2);
+    translate([67,0,0])
+    cube([1.2, 95, layer_height]);
+    translate([0,95,0])
+    cube([150, 1.2, layer_height]);
+    
+}
 
+//kreisauCircleBox();
 
 //include<Black_Orchestra.scad>;
