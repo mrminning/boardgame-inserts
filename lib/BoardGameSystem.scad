@@ -1,9 +1,32 @@
-/* 
+/*
     Based on
     BoardGame System v 1.0 31.3.2024 by Martin Kaspar
 */
 
 module dividerCutout(size=[80,60,1.2], corner=3, cutoutWidth=30, cutoutDepth=40){
+    width = size[0];
+    height = size[1];
+    wallThickness = size[2];
+
+    difference(){
+        cube([width, height, wallThickness]);
+        translate([(width-cutoutWidth-corner)/2,0,0])
+            cube([cutoutWidth, cutoutDepth-(cutoutWidth/2), wallThickness]);
+        translate([(width-corner)/2,cutoutDepth-(cutoutWidth/2),0])
+            cylinder(r=(cutoutWidth-corner*2)/2, h=wallThickness);
+    }
+    translate([(width-cutoutWidth-corner)/2, corner, 0]) {
+        cylinder(r=corner, h=wallThickness);
+        cube([corner, height-corner, wallThickness]);
+    }
+    translate([(width-cutoutWidth-corner)/2+cutoutWidth, corner, 0]) {
+        cylinder(r=corner, h=wallThickness);
+        translate([-corner,0,0])
+        cube([corner, height-corner, wallThickness]);
+    }
+}
+
+module dividerCutoutLying(size=[80,60,1.2], corner=3, cutoutWidth=30, cutoutDepth=40){
     width = size[0];
     height = size[1];
     wallThickness = size[2];
@@ -44,7 +67,7 @@ module divider(size=[92,68,1.2], corner=3, txtLabel="Divider", txtSize=8, txtFon
             roundedBox([size[0]/2-15, size[1]-25, 5], corner);
         translate([size[0]/2+5,10,-1])
             roundedBox([size[0]/2-15, size[1]-25, 5], corner);
-   }   
+   }
 }
 
 module straightDivider(size=[92,68,1.2], corner=3, txtLabel="Divider", txtSize=8, txtFont="Arial"){
@@ -62,7 +85,7 @@ module straightDivider(size=[92,68,1.2], corner=3, txtLabel="Divider", txtSize=8
             roundedBox([size[0]/2-15, size[1]-25, 5], corner);
         translate([size[0]/2+5,10,-1])
             roundedBox([size[0]/2-15, size[1]-25, 5], corner);
-   }   
+   }
 }
 
 
@@ -126,10 +149,24 @@ module cardBox(size=[10,10,10], corner=0, containers=1, cutoutWidth=20, wallThic
     }
 }
 
+module cutoutFill(cutoutWidth=20, corner=3, cutoutHeight=20, wallThickness=1.2) {
+  cube([wallThickness, corner, cutoutHeight-corner]);
+  translate([0, 0,  (cutoutHeight-corner)]) {
+      rotate([90, 0, 90])
+      cylinder(r=corner, h=wallThickness);
+  }
+  translate([0, cutoutWidth, 0]) {
+  cube([wallThickness, corner, cutoutHeight-corner]);
+  }
+  translate([0, cutoutWidth+corner, (cutoutHeight-corner)]) {
+  rotate([90, 0, 90])
+  cylinder(r=corner, h=wallThickness);
+  }
+}
 
 /*full box with rounded corners*/
 module roundedBox(size=[10,10,10], corner=0){
-    if (corner>0){       
+    if (corner>0){
         $fn=32;
         hull(){
             translate([corner,corner,0])
@@ -147,7 +184,7 @@ module roundedBox(size=[10,10,10], corner=0){
 }
 
 /*token box*/
-module tokenBox(size=[10,10,10], hexBottom=0, corner=0, 
+module tokenBox(size=[10,10,10], hexBottom=0, corner=0,
     containersX=1, containersY=1,
     wallThickness=1.2, txtLabel="", txtSize=8, txtFont="Arial"){
     if (hexBottom<1) {
@@ -158,7 +195,7 @@ module tokenBox(size=[10,10,10], hexBottom=0, corner=0,
             translate([size[0]/2,size[1]/2,0.3])
                 linear_extrude(2)
                     text(txtLabel,size=txtSize, font=txtFont, halign="center", valign="center");
-                    
+
         }
     } else{
         difference() {
@@ -166,7 +203,7 @@ module tokenBox(size=[10,10,10], hexBottom=0, corner=0,
             translate([wallThickness,wallThickness,wallThickness])
                 roundedBox([size[0]-wallThickness*2, size[1]-wallThickness*2, size[2]],corner-1);
 
- 
+
            translate([3,3,-1])
            intersection(){
                 roundedBox([size[0]-6, size[1]-6, wallThickness*2],corner-1);
@@ -193,7 +230,7 @@ module tokenBox(size=[10,10,10], hexBottom=0, corner=0,
     }
 }
 
-module tokenBoxDividers(size=[10,10,10], hexBottom=0, corner=0, 
+module tokenBoxDividers(size=[10,10,10], hexBottom=0, corner=0,
     containersX=[], containersY=[],
     wallThickness=1.2, txtLabel="", txtSize=8, txtFont="Arial"){
     if (hexBottom<1) {
@@ -204,7 +241,7 @@ module tokenBoxDividers(size=[10,10,10], hexBottom=0, corner=0,
             translate([size[0]/2,size[1]/2,0.3])
                 linear_extrude(2)
                     text(txtLabel,size=txtSize, font=txtFont, halign="center", valign="center");
-                    
+
         }
     } else{
         difference() {
@@ -212,7 +249,7 @@ module tokenBoxDividers(size=[10,10,10], hexBottom=0, corner=0,
             translate([wallThickness,wallThickness,wallThickness])
                 roundedBox([size[0]-wallThickness*2, size[1]-wallThickness*2, size[2]],corner-1);
 
- 
+
            translate([3,3,-1])
            intersection(){
                 roundedBox([size[0]-6, size[1]-6, wallThickness*2],corner-1);
