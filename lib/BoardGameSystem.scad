@@ -149,16 +149,17 @@ module cardBox(size=[10,10,10], corner=0, containers=1, cutoutWidth=20, wallThic
     }
 }
 
-module cutoutFill(cutoutWidth=20, corner=3, cutoutHeight=20, wallThickness=1.2) {
+module cutoutFiller(cutoutWidth=20, corner=3, cutoutHeight=20, wallThickness=1.2) {
+  translate([0, 0-cutoutWidth/2-corner,0])
   cube([wallThickness, corner, cutoutHeight-corner]);
-  translate([0, 0,  (cutoutHeight-corner)]) {
+  translate([0, 0-cutoutWidth/2-corner,  (cutoutHeight-corner)]) {
       rotate([90, 0, 90])
       cylinder(r=corner, h=wallThickness);
   }
-  translate([0, cutoutWidth, 0]) {
+  translate([0, cutoutWidth/2, 0]) {
   cube([wallThickness, corner, cutoutHeight-corner]);
   }
-  translate([0, cutoutWidth+corner, (cutoutHeight-corner)]) {
+  translate([0, cutoutWidth/2+corner, (cutoutHeight-corner)]) {
   rotate([90, 0, 90])
   cylinder(r=corner, h=wallThickness);
   }
