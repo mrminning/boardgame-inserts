@@ -66,6 +66,7 @@ module pawnsAndTiles() {
     containersX=1, containersY=3,
     wallThickness=1.2);
 }
+
 // Dice
 module diceBox() {
     tokenBox(size=[67, 95, layer_height], corner=3);
@@ -80,36 +81,36 @@ module diceBox() {
     // Pamphlet + hideout token
     // Special item tiles
 module redOrchestraBox() {
+    length = 67+95;
+    width = 95;
+    cutoutWidth = 20;
+    corner = 3;
+    offset = width/2 - cutoutWidth/2 - corner;
+
     difference() {
-        length = 67*2;
-        width = 95;
-        cutoutWidth = 20;
-        corner = 3;
-        offset = width/2 - cutoutWidth/2 - corner;
-        
-        tokenBox(size=[length, width, layer_height], corner=corner, containersX=2);
+        tokenBox(size=[length, width, layer_height], corner=corner);
         translate([0,offset,0])
-            cube([1.2, cutoutWidth+(corner*2), layer_height]);
+            cube([1.2, cutoutWidth+(corner*2), layer_height]);        
     }
-    // Left side
-    //rotate([90, 0, 0])
-   // translate([(i*sectionWidth) + offset, boxHeight - corner, -wallThickness])
-     //   cylinder(r=corner, h=wallThickness);
+    translate([0,offset+cutoutWidth/2+corner,0])
+        cutoutFiller(cutoutWidth=cutoutWidth, corner=corner, cutoutHeight=layer_height, wallThickness=1.2);
+    translate([67,0,0])
+    cube([1.2, 95, layer_height]);
     
 }
-//redOrchestraBox();
-//horstKopkowBox();
+
 // Horst Kopkow
     // Event cards
     // Conspirator cards
     // Encounter cards
 module horstKopkowBox() {
-    rotate([0,0,270]) {    
-        cardBox(size=[95, 67, layer_height], corner=3, containers=1, cutoutWidth=20);
+    rotate([0,0,270]) {
+        cardBox(size=[95, 95, layer_height], corner=3, containers=1, cutoutWidth=20);
+        translate([0,67,0])
+        cube([95, 1.2, layer_height]);
     }
 }
 
-cutoutFill();
 // Kreisau Circle
     // Event cards
     // Ally tiles
