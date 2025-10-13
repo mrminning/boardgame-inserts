@@ -83,7 +83,7 @@ module straightDivider(size=[92,68,1.2], corner=3, txtLabel="Divider", txtSize=8
 }
 
 
-module cardBox(size=[10,10,10], corner=0, containers=1, cutoutWidth=20, wallThickness=1.2, txtLabel="", txtSize=8, txtFont="Arial") {
+module cardBox(size=[100,50,40], corner=0, containers=1, cutoutWidth=20, wallThickness=1.2, txtLabel="", txtSize=8, txtFont="Arial") {
     boxLength = size[0];
     boxDepth = size[1];
     boxHeight = size[2];
@@ -160,7 +160,7 @@ module cutoutFiller(cutoutWidth=20, corner=3, cutoutHeight=20, wallThickness=1.2
 }
 
 /*full box with rounded corners*/
-module roundedBox(size=[10,10,10], corner=0){
+module roundedBox(size=[100,100,20], corner=3){
     if (corner>0){
         $fn=32;
         hull(){
@@ -179,7 +179,7 @@ module roundedBox(size=[10,10,10], corner=0){
 }
 
 /*token box*/
-module tokenBox(size=[10,10,10], hexBottom=0, corner=0,
+module tokenBox(size=[100,50,20], hexBottom=0, corner=3,
     containersX=1, containersY=1,
     wallThickness=1.2, txtLabel="", txtSize=8, txtFont="Arial"){
     if (hexBottom<1) {
@@ -225,8 +225,8 @@ module tokenBox(size=[10,10,10], hexBottom=0, corner=0,
     }
 }
 
-module tokenBoxDividers(size=[10,10,10], hexBottom=0, corner=0,
-    containersX=[], containersY=[],
+module tokenBoxDividers(size=[100,100,10], hexBottom=0, corner=3,
+    containersX=[60], containersY=[40],
     wallThickness=1.2, txtLabel="", txtSize=8, txtFont="Arial"){
     if (hexBottom<1) {
         difference() {
