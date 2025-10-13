@@ -2,27 +2,21 @@
     Based on
     BoardGame System v 1.0 31.3.2024 by Martin Kaspar
 */
-
-module dividerCutout(size=[80,60,1.2], corner=3, cutoutWidth=30, cutoutDepth=40){
+module dividerCutout(size=[80,60,1.2], corner=10, cutoutWidth=25, cutoutDepth=40){
     width = size[0];
     height = size[1];
     wallThickness = size[2];
-
     difference(){
-        cube([width, height, wallThickness]);
-        translate([(width-cutoutWidth-corner)/2,0,0])
-            cube([cutoutWidth, cutoutDepth-(cutoutWidth/2), wallThickness]);
-        translate([(width-corner)/2,cutoutDepth-(cutoutWidth/2),0])
-            cylinder(r=(cutoutWidth-corner*2)/2, h=wallThickness);
+        cube([wallThickness, width, height]);
+        translate([0,(width-cutoutWidth-corner*2)/2,height-cutoutDepth])
+            cube([wallThickness, cutoutWidth+(corner*2), cutoutDepth]);
+        translate([0, (width)/2,height-cutoutDepth])
+        rotate([0,90,0]){
+            cylinder(r=(cutoutWidth)/2, h=wallThickness);
+      }
     }
-    translate([(width-cutoutWidth-corner)/2, corner, 0]) {
-        cylinder(r=corner, h=wallThickness);
-        cube([corner, height-corner, wallThickness]);
-    }
-    translate([(width-cutoutWidth-corner)/2+cutoutWidth, corner, 0]) {
-        cylinder(r=corner, h=wallThickness);
-        translate([-corner,0,0])
-        cube([corner, height-corner, wallThickness]);
+    translate([0,width/2,height-cutoutDepth]){
+        cutoutFiller(cutoutWidth=cutoutWidth, corner=corner, cutoutHeight=cutoutDepth, wallThickness=1.2);
     }
 }
 

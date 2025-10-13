@@ -24,13 +24,12 @@ module eventCardsBox() {
     box_length = 286-56; // 230
     spacing = (box_length - 40.5) / 7;
     tokenBox(size=[box_length, event_box_width, main_box_height], hexBottom=no_hex, corner=1);
-    // 53 degress 40.5 space
     slots = 7;
-    for(i=[0:slots-1]) {        
+    for(i=[0:slots-1]) {
         translate([40.5+(spacing*i),0,0]) {
-        rotate([90-53,0,270]) {
-        dividerCutout(size=[event_box_width, 65, wallThickness], corner=3, cutoutWidth=30, cutoutDepth=40);
-        }
+          rotate([0, 0-38,0]) {
+            dividerCutout(size=[event_box_width, 65, wallThickness], corner=3, cutoutWidth=30, cutoutDepth=40);
+          }
         }
     }
 }
@@ -43,11 +42,11 @@ module enemyMarkersBox() {
     tokenBox(size=[enemy_box_length, enemy_box_width, enemy_box_height], hexBottom=no_hex, corner=3);
 }
 
-// Conspirator cards: 
+// Conspirator cards:
 // Victory card
 // Interrogation cards
 module interrogationConspiratorCardBox() {
-    rotate([0,0,270]) {    
+    rotate([0,0,270]) {
         cardBox(size=[main_box_width-96,67, layer_height], corner=3, containers=2, cutoutWidth=20);
     }
 }
@@ -62,7 +61,7 @@ module conspiritorSheetBox() {
 // Dice
 // Pawns + tracking cubes
 module pawnsAndTiles() {
-    tokenBox(size=[55.5,main_box_width-96,layer_height], hexBottom=0, corner=0, 
+    tokenBox(size=[55.5,main_box_width-96,layer_height], hexBottom=0, corner=0,
     containersX=1, containersY=3,
     wallThickness=1.2);
 }
@@ -90,13 +89,12 @@ module redOrchestraBox() {
     difference() {
         tokenBox(size=[length, width, layer_height], corner=corner);
         translate([0,offset,0])
-            cube([1.2, cutoutWidth+(corner*2), layer_height]);        
+            cube([1.2, cutoutWidth+(corner*2), layer_height]);
     }
     translate([0,offset+cutoutWidth/2+corner,0])
         cutoutFiller(cutoutWidth=cutoutWidth, corner=corner, cutoutHeight=layer_height, wallThickness=1.2);
     translate([67,0,0])
     cube([1.2, 95, layer_height]);
-    
 }
 
 // Horst Kopkow
@@ -125,7 +123,7 @@ module kreisauCircleBox() {
     difference() {
         tokenBox(size=[length, width, layer_height], corner=corner);
         translate([0,offset,0])
-            cube([1.2, cutoutWidth+(corner*2), layer_height]);        
+            cube([1.2, cutoutWidth+(corner*2), layer_height]);
     }
     translate([0,offset+cutoutWidth/2+corner,0])
         cutoutFiller(cutoutWidth=cutoutWidth, corner=corner, cutoutHeight=layer_height, wallThickness=1.2);
@@ -133,9 +131,5 @@ module kreisauCircleBox() {
     cube([1.2, 95, layer_height]);
     translate([0,95,0])
     cube([150, 1.2, layer_height]);
-    
+
 }
-
-//kreisauCircleBox();
-
-//include<Black_Orchestra.scad>;
