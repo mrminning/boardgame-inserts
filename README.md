@@ -13,6 +13,11 @@ cd Black_Orchestra
 
 ## Carson City
 Insert for Carson City Big Box
+Build STLs with script
+```
+cd Carson_City
+./buildAll.sh
+```
 
 ## Scythe
 Insert for Scythe.
