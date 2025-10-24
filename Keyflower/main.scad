@@ -18,30 +18,30 @@ module tilesBox() {
 }
 
 // 6 dividers (spring, summer, autumn, winter, home, boat, turn order)
-module tileDivider(label="Divider") {
+module moduleTileDivider(label="Divider") {
     straightDivider(size=[82,64,1.4], corner=3, txtLabel=label, txtSize=8, txtFont="Nimbus Roman No9 L");
 }
 
 module tileDividerSpring() {
-    tileDivider("Spring");
+    moduleTileDivider("Spring");
     }
 module tileDividerSummer() {
-    tileDivider("Summer");
+    moduleTileDivider("Summer");
     }
 module tileDividerAutumn() {
-    tileDivider("Autumn");
+    moduleTileDivider("Autumn");
     }
 module tileDividerWinter() {
-    tileDivider("Winter");
+    moduleTileDivider("Winter");
     }
 module tileDividerBoats() {
-    tileDivider("Boats");
+    moduleTileDivider("Boats");
     }
 module tileDividerHome() {
-    tileDivider("Home");
+    moduleTileDivider("Home");
     }
 module tileDividerTurn() {
-    tileDivider("Turn");
+    moduleTileDivider("Turn");
     }
 
 // Home screens
@@ -73,5 +73,3 @@ module otherMeeplesBox() {
 module resourcesBox() {
     tokenBox(size=[last_lane_width, main_box_width, layer_height], hexBottom=0, corner=3, containersX=1, containersY=4);
 }
-
-
