@@ -19,6 +19,14 @@ cd Carson_City
 ./buildAll.sh
 ```
 
+## Keyflower
+Insert for Keyflower
+Build STLs with script
+```
+cd Keyflower
+./buildAll.sh
+```
+
 ## Scythe
 Insert for Scythe.
 
