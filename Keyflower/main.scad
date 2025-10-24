@@ -41,7 +41,7 @@ module tileDividerHome() {
     moduleTileDivider("Home");
     }
 module tileDividerTurn() {
-    moduleTileDivider("Turn");
+    moduleTileDivider("Turn order");
     }
 
 // Home screens
