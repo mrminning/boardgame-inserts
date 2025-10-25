@@ -3,7 +3,7 @@ include <../lib/BoardGameSystem.scad>;
 
 main_box_length = 308;// X
 main_box_width = 218; // Y
-main_box_height = 69; // Z
+main_box_height = 68; // Z
 layer_height = main_box_height/2;
 last_lane_width = 308-241;
 empty_box_height = 70;

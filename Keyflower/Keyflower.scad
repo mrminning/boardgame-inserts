@@ -40,6 +40,3 @@ skillTilesBox();
 
 translate([245,350,0])
 greenMeeplesBox();
-
-
-
