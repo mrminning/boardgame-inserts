@@ -19,6 +19,14 @@ cd Carson_City
 ./buildAll.sh
 ```
 
+## Council of 4
+Insert for Council of 4
+Build STLs with script
+```
+cd Council_of_4
+./buildAll.sh
+```
+
 ## Keyflower
 Insert for Keyflower
 Build STLs with script
