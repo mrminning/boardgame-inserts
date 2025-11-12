@@ -44,6 +44,14 @@ cd Ra
 ```
 Use this for bidding tiles https://makerworld.com/en/models/977192-ra-the-boardgame-2023-ed-box-organiser
 
+## Red Cathedral
+Insert for Red Cathedral
+Build STLs with script
+```
+cd Red_Cathedral
+./buildAll.sh
+```
+
 ## Scythe
 Insert for Scythe.
 
