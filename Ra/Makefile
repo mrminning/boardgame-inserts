@@ -1,7 +1,7 @@
 .PHONY: all clean
 .DELETE_ON_ERROR:
 
-SRCS := $(filter-out main.scad Council_of_4.scad, $(wildcard *.scad))
+SRCS := $(filter-out main.scad Ra.scad, $(wildcard *.scad))
 OBJS := $(SRCS:.scad=.stl)
 
 all: $(OBJS)
