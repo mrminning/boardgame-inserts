@@ -1,4 +1,10 @@
-# boardgame-inserts
+# Board game inserts
+
+These inserts are designed to have no lid lift. If possible, all expansions should also be included in the main box.
+
+The games are usually stored vertically and the content should stay in place even when the box is moved, transported or turned over to read the back.
+
+The games should be easy to setup and where possible, the inserts should be reusable as component trays during play. Just lift them out of the box and put them on the table and go.
 
 Using a modified https://github.com/beavisCZ/BoardGameSystem as lib to generate component boxes for inserts.
 
