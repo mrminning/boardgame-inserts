@@ -3,13 +3,14 @@ include <../lib/BoardGameSystem.scad>;
 
 main_box_length = 308;// X
 main_box_width = 218; // Y
-main_box_height = 68; // Z
-layer_height = main_box_height/2;
+main_box_height = 64; // Z
+layer1_height = 34;
+layer2_height = main_box_height - layer1_height;
 last_lane_width = 308-241;
-empty_box_height = 70;
+empty_box_height = 69;
 hex_bottom = 6;
 no_hex = 0;
-wallThickness = 1.2;
+wallThickness = 1.4;
 $fn = $preview ? 32 : 128;
 
 // Tiles: 69 * 80
@@ -56,20 +57,20 @@ module meepleBagBox() {
 
 // Skill tiles
 module skillTilesBox() {
-    tokenBox(size=[last_lane_width, 88,  layer_height], hexBottom=no_hex, corner=3);
+    tokenBox(size=[last_lane_width, 88,  layer1_height], hexBottom=no_hex, corner=3);
 }
 
 // Green meeples
 module greenMeeplesBox() {
-    tokenBox(size=[last_lane_width, 88,  layer_height], hexBottom=no_hex, corner=3);
+    tokenBox(size=[last_lane_width, 88,  layer1_height], hexBottom=no_hex, corner=3);
 }
 
 // Waving meeple + Keymelequin
 module otherMeeplesBox() {
-    tokenBox(size=[last_lane_width, 40, layer_height], corner=3);
+    tokenBox(size=[last_lane_width, 40, layer1_height], corner=3);
 }
 
 // 4 Resources
 module resourcesBox() {
-    tokenBox(size=[last_lane_width, main_box_width, layer_height], hexBottom=0, corner=3, containersX=1, containersY=4);
+    tokenBox(size=[last_lane_width, main_box_width, layer2_height], hexBottom=0, corner=3, containersX=1, containersY=4, roundedBottom=true);
 }
