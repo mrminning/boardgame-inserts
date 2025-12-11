@@ -15,7 +15,7 @@ $fn = $preview ? 32 : 128;
 
 // Tiles: 69 * 80
 module tilesBox() {
-    tokenBox(size=[85, 218, main_box_height], hexBottom=no_hex, corner=3);
+    tokenBox(size=[85, 218, main_box_height], wallThickness=wallThickness, hexBottom=no_hex, corner=3, roundedBottom=true);
 }
 
 // 6 dividers (spring, summer, autumn, winter, home, boat, turn order)
@@ -47,12 +47,12 @@ module tileDividerTurn() {
 
 // Home screens
 module homeScreensBox() {
-    tokenBox(size=[155, 130, main_box_height], corner=3);
+    tokenBox(size=[155, 145, main_box_height], wallThickness=wallThickness, corner=3, roundedBottom=true);
 }
 
 // Meeple bag
 module meepleBagBox() {
-    tokenBox(size=[155, 217-130, main_box_height], hexBottom=no_hex, corner=3);
+    tokenBox(size=[155, 217-145, main_box_height], wallThickness=wallThickness, hexBottom=no_hex, corner=3, roundedBottom=true);
 }
 
 // Skill tiles
@@ -72,5 +72,5 @@ module otherMeeplesBox() {
 
 // 4 Resources
 module resourcesBox() {
-    tokenBox(size=[last_lane_width, main_box_width, layer2_height], hexBottom=0, corner=3, containersX=1, containersY=4, roundedBottom=true);
+    tokenBox(size=[last_lane_width, main_box_width, layer2_height], wallThickness=wallThickness, hexBottom=0, corner=3, containersX=1, containersY=4, roundedBottom=true);
 }
