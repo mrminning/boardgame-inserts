@@ -160,18 +160,31 @@ module cutoutFiller(cutoutWidth=20, corner=3, cutoutHeight=20, wallThickness=1.2
 }
 
 /*full box with rounded corners*/
-module roundedBox(size=[100,100,20], corner=3){
+module roundedBox(size=[100,100,20], corner=3, sidesOnly=true){
     if (corner>0){
         $fn=32;
-        hull(){
-            translate([corner,corner,0])
-                cylinder (r=corner, h=size[2]);
-            translate([size[0]-corner,corner,0])
-                cylinder (r=corner, h=size[2]);
-            translate([size[0]-corner,size[1]-corner,0])
-                cylinder (r=corner, h=size[2]);
-            translate([corner,size[1]-corner,0])
-                cylinder (r=corner, h=size[2]);
+        if (sidesOnly) {
+            hull(){
+                translate([corner,corner,0])
+                    cylinder (r=corner, h=size[2]);
+                translate([size[0]-corner,corner,0])
+                    cylinder (r=corner, h=size[2]);
+                translate([size[0]-corner,size[1]-corner,0])
+                    cylinder (r=corner, h=size[2]);
+                translate([corner,size[1]-corner,0])
+                    cylinder (r=corner, h=size[2]);
+            }
+        } else {
+            hull(){
+                translate([corner,corner,corner]) sphere(r=corner);
+                translate([size[0]-corner,corner,corner]) sphere(r=corner);
+                translate([size[0]-corner,size[1]-corner,corner]) sphere(r=corner);
+                translate([corner,size[1]-corner,corner]) sphere(r=corner);
+                translate([corner,corner,corner]) cylinder(r=corner, h=size[2]-corner);
+                translate([size[0]-corner,corner,corner]) cylinder(r=corner, h=size[2]-corner);
+                translate([size[0]-corner,size[1]-corner,corner]) cylinder(r=corner, h=size[2]-corner);
+                translate([corner,size[1]-corner,corner]) cylinder(r=corner, h=size[2]-corner);
+            }
         }
     } else {
         cube(size);
@@ -181,12 +194,16 @@ module roundedBox(size=[100,100,20], corner=3){
 /*token box*/
 module tokenBox(size=[100,50,20], hexBottom=0, corner=3,
     containersX=1, containersY=1,
-    wallThickness=1.2, txtLabel="", txtSize=8, txtFont="Arial"){
+    wallThickness=1.2, txtLabel="", txtSize=8, txtFont="Arial", roundedBottom=false){
     if (hexBottom<1) {
         difference() {
-            roundedBox(size,corner);
+            roundedBox(size, corner);
             translate([wallThickness,wallThickness,wallThickness])
-                roundedBox([size[0]-wallThickness*2, size[1]-wallThickness*2, size[2]],corner-1);
+                if(roundedBottom) {
+                    roundedBox([size[0]-wallThickness*2, size[1]-wallThickness*2, size[2]],corner-1, sidesOnly=false);
+                } else {
+                    roundedBox([size[0]-wallThickness*2, size[1]-wallThickness*2, size[2]],corner-1);
+                }
             translate([size[0]/2,size[1]/2,0.3])
                 linear_extrude(2)
                     text(txtLabel,size=txtSize, font=txtFont, halign="center", valign="center");

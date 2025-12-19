@@ -26,7 +26,7 @@ tileDividerTurn();
 translate([89,0,0])
 homeScreensBox();
 
-translate([89,131,0])
+translate([89,146,0])
 meepleBagBox();
 
 translate([245,0,0])
