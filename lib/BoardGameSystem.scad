@@ -191,7 +191,7 @@ module roundedBox(size=[100,100,20], corner=3, sidesOnly=true){
     }
 }
 
-/*token box*/
+/*tokenBox*/
 module tokenBox(size=[100,50,20], hexBottom=0, corner=3,
     containersX=1, containersY=1,
     wallThickness=1.2, txtLabel="", txtSize=8, txtFont="Arial", roundedBottom=false){
@@ -227,63 +227,28 @@ module tokenBox(size=[100,50,20], hexBottom=0, corner=3,
             linear_extrude(3)
                 text(txtLabel,size=txtSize, font=txtFont, halign="center", valign="center");
     }
-    if (containersX>1)
-    {
+
+    if (is_list(containersX)) {
+        if (len(containersX)>0) {
+            for (i=[0:len(containersX) -1]){
+                translate([containersX[i],0,0]) cube([wallThickness,size[1],size[2]]);
+            }
+        }
+    } else if (containersX>1) {
         for (i=[1:containersX-1]){
             translate([i*size[0]/containersX,0,0]) cube([wallThickness,size[1],size[2]]);
         }
     }
 
-    if (containersY>1)
-    {
+    if (is_list(containersY)) {
+        if (len(containersY)>0) {
+            for (i=[0:len(containersY) -1]){
+                translate([0,containersY[i],0]) cube([size[0],wallThickness,size[2]]);
+            }
+        }
+    } else if (containersY>1) {
         for (i=[1:containersY-1]){
             translate([0,i*size[1]/containersY,0]) cube([size[0],wallThickness,size[2]]);
-        }
-    }
-}
-
-module tokenBoxDividers(size=[100,100,10], hexBottom=0, corner=3,
-    containersX=[60], containersY=[40],
-    wallThickness=1.2, txtLabel="", txtSize=8, txtFont="Arial"){
-    if (hexBottom<1) {
-        difference() {
-            roundedBox(size,corner);
-            translate([wallThickness,wallThickness,wallThickness])
-                roundedBox([size[0]-wallThickness*2, size[1]-wallThickness*2, size[2]],corner-1);
-            translate([size[0]/2,size[1]/2,0.3])
-                linear_extrude(2)
-                    text(txtLabel,size=txtSize, font=txtFont, halign="center", valign="center");
-
-        }
-    } else{
-        difference() {
-            roundedBox(size,corner);
-            translate([wallThickness,wallThickness,wallThickness])
-                roundedBox([size[0]-wallThickness*2, size[1]-wallThickness*2, size[2]],corner-1);
-
-
-           translate([3,3,-1])
-           intersection(){
-                roundedBox([size[0]-6, size[1]-6, wallThickness*2],corner-1);
-                hexPlane(hexBottom,size[0],size[1],wallThickness*2);
-            }
-
-        }
-        translate([size[0]/2,size[1]/2,0.3])
-            linear_extrude(3)
-                text(txtLabel,size=txtSize, font=txtFont, halign="center", valign="center");
-    }
-    if (len(containersX)>0)
-    {
-        for (i=[0:len(containersX) -1]){
-            translate([containersX[i],0,0]) cube([wallThickness,size[1],size[2]]);
-        }
-    }
-
-    if (len(containersY)>0)
-    {
-        for (i=[0:len(containersY) -1]){
-            translate([0,containersY[i],0]) cube([size[0],wallThickness,size[2]]);
         }
     }
 }
