@@ -1,7 +1,7 @@
 .PHONY: all clean
 .DELETE_ON_ERROR:
 
-SRCS := $(filter-out main.scad Blackout_Hong_Kong.scad, $(wildcard *.scad))
+SRCS := $(wildcard stl/*.scad)
 OBJS := $(SRCS:.scad=.stl)
 
 all: $(OBJS)
@@ -10,4 +10,5 @@ all: $(OBJS)
 	openscad --export-format binstl -o $@ $<
 
 clean:
-	rm -v *.stl
+	rm -v stl/*.stl
+	rm -v stl/*.scad
