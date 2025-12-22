@@ -44,5 +44,5 @@ module scoutTiles() {
 
 // Cards 72 objective cards, 48 player cards, 8 starting cards, 4 dice cards, 4 emergency plans
 module cards() {
-  cardBox(size=[inner_well_width, 100, top_layer_height], hexBottom=no_hex, corner=3, containers=3);
+  cardBox(size=[inner_well_width, 100, top_layer_height], corner=3, containers=3);
 }
