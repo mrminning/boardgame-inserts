@@ -41,6 +41,14 @@ cd Keyflower
 ./buildAll.sh
 ```
 
+## Mombasa
+Insert for Mombasa
+Build STLs with script
+```
+cd Mombasa
+./buildAll.sh
+```
+
 ## Ra
 Insert for Ra
 Build STLs with script
