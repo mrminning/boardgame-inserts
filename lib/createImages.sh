@@ -14,3 +14,12 @@ if [ "$result" != "hexPlane" ] && [ "$result" != "roundedBox" ]; then
     rm -f $filename
 fi
 done
+
+for dir in *; do
+    if [ -d "$dir" ] && [ "$dir" != "lib" ]; then
+        echo $dir
+        filename="$dir/$dir.scad"
+        outfile="$dir.png"
+        openscad --render -o "lib/images/$outfile" $filename
+    fi
+done
