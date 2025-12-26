@@ -6,10 +6,14 @@ The games are usually stored vertically and the content should stay in place eve
 
 The games should be easy to setup and where possible, the inserts should be reusable as component trays during play. Just lift them out of the box and put them on the table and go.
 
+Generated stl-files are located in the stl subfolder.
+
 Using a modified https://github.com/beavisCZ/BoardGameSystem as lib to generate component boxes for inserts.
 
 ## Black Orchestra
 Insert for Black Orchestra.
+
+![Insert](/lib/images/Black_Orchestra.png)
 
 Build STLs with script
 ```
@@ -19,6 +23,9 @@ cd Black_Orchestra
 
 ## Carson City
 Insert for Carson City Big Box
+
+![Insert](/lib/images/Carson_City.png)
+
 Build STLs with script
 ```
 cd Carson_City
@@ -27,6 +34,9 @@ cd Carson_City
 
 ## Council of 4
 Insert for Council of 4
+
+![Insert](/lib/images/Council_of_4.png)
+
 Build STLs with script
 ```
 cd Council_of_4
@@ -35,6 +45,9 @@ cd Council_of_4
 
 ## Keyflower
 Insert for Keyflower
+
+![Insert](/lib/images/Keyflower.png)
+
 Build STLs with script
 ```
 cd Keyflower
@@ -43,6 +56,9 @@ cd Keyflower
 
 ## Mombasa
 Insert for Mombasa
+
+![Insert](/lib/images/Mombasa.png)
+
 Build STLs with script
 ```
 cd Mombasa
@@ -51,6 +67,9 @@ cd Mombasa
 
 ## Ra
 Insert for Ra
+
+![Insert](/lib/images/Ra.png)
+
 Build STLs with script
 ```
 cd Ra
@@ -60,6 +79,9 @@ Use this for bidding tiles https://makerworld.com/en/models/977192-ra-the-boardg
 
 ## Red Cathedral
 Insert for Red Cathedral
+
+![Insert](/lib/images/Red_Cathedral.png)
+
 Build STLs with script
 ```
 cd Red_Cathedral
@@ -107,12 +129,6 @@ dividerCutout(size=[80,60,1.2], corner=10, cutoutWidth=25, cutoutDepth=40);
 straightDivider(size=[92,68,1.4], corner=3, txtLabel="Divider", txtSize=8, txtFont="Arial")
 ```
 ![sample](/lib/images/straightDivider.png)
-
-### tokenBoxDividers
-```
-tokenBoxDividers(size=[100,100,10], hexBottom=0, corner=3, containersX=[60], containersY=[40], wallThickness=1.2);
-```
-![sample](/lib/images/tokenBoxDividers.png)
 
 ### tokenBox
 ```
