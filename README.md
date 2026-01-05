@@ -65,6 +65,17 @@ cd Mombasa
 ./buildAll.sh
 ```
 
+## Quadropolis
+Insert for Quadropolis
+
+![Insert](/lib/images/Quadropolis.png)
+
+Build STLs with script
+```
+cd Quadropolis
+./buildAll.sh
+```
+
 ## Ra
 Insert for Ra
 
