@@ -156,10 +156,10 @@ module cutoutFiller(cutoutWidth = 20, corner = 3, cutoutHeight = 20, wallThickne
 }
 
 /*full box with rounded corners*/
-module roundedBox(size = [100, 100, 20], corner = 3, sidesOnly = true) {
+module roundedBox(size = [100, 100, 20], corner = 3, bottomCorner = 0) {
   if (corner > 0) {
-    $fn = 32;
-    if (sidesOnly) {
+    //$fn = 32;
+    if (bottomCorner == 0) {
       hull() {
         translate([corner, corner, 0])
           cylinder(r=corner, h=size[2]);
@@ -172,10 +172,10 @@ module roundedBox(size = [100, 100, 20], corner = 3, sidesOnly = true) {
       }
     } else {
       hull() {
-        translate([corner, corner, corner]) sphere(r=corner);
-        translate([size[0] - corner, corner, corner]) sphere(r=corner);
-        translate([size[0] - corner, size[1] - corner, corner]) sphere(r=corner);
-        translate([corner, size[1] - corner, corner]) sphere(r=corner);
+        translate([bottomCorner, bottomCorner, bottomCorner]) sphere(r=bottomCorner);
+        translate([size[0] - bottomCorner, bottomCorner, bottomCorner]) sphere(r=bottomCorner);
+        translate([size[0] - bottomCorner, size[1] - bottomCorner, bottomCorner]) sphere(r=bottomCorner);
+        translate([bottomCorner, size[1] - bottomCorner, bottomCorner]) sphere(r=bottomCorner);
         translate([corner, corner, corner]) cylinder(r=corner, h=size[2] - corner);
         translate([size[0] - corner, corner, corner]) cylinder(r=corner, h=size[2] - corner);
         translate([size[0] - corner, size[1] - corner, corner]) cylinder(r=corner, h=size[2] - corner);
@@ -198,16 +198,13 @@ module tokenBox(
   txtLabel = "",
   txtSize = 8,
   txtFont = "Arial",
-  roundedBottom = false
+  bottomCorner = 0
 ) {
   if (hexBottom < 1) {
     difference() {
       roundedBox(size, corner);
-      translate([wallThickness, wallThickness, wallThickness]) if (roundedBottom) {
-        roundedBox([size[0] - wallThickness * 2, size[1] - wallThickness * 2, size[2]], corner - 1, sidesOnly=false);
-      } else {
-        roundedBox([size[0] - wallThickness * 2, size[1] - wallThickness * 2, size[2]], corner - 1);
-      }
+      translate([wallThickness, wallThickness, wallThickness])
+        roundedBox([size[0] - wallThickness * 2, size[1] - wallThickness * 2, size[2]], corner - 1, bottomCorner=bottomCorner);
       translate([size[0] / 2, size[1] / 2, 0.3])
         linear_extrude(2)
           text(txtLabel, size=txtSize, font=txtFont, halign="center", valign="center");
