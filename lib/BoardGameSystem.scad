@@ -187,6 +187,12 @@ module roundedBox(size = [100, 100, 20], corner = 3, bottomCorner = 0) {
   }
 }
 
+// Calculate dividers for tokenBox
+function getDividers(containers, length) =
+  is_list(containers) ?
+    [for (i = [0:len(containers) + 1]) i == 0 ? 0 : i == len(containers) + 1 ? length : containers[i - 1]]
+  : [for (i = [0:containers]) i == i ? (length / containers) * i : 0];
+
 /*tokenBox*/
 module tokenBox(
   size = [100, 50, 20],
@@ -200,6 +206,43 @@ module tokenBox(
   txtFont = "Arial",
   bottomCorner = 0
 ) {
+  dividersX = getDividers(containersX, size[0]);
+  dividersY = getDividers(containersY, size[1]);
+
+  // Todo: Hex bottom
+
+  difference() {
+    roundedBox(size, corner);
+    for (i = [0:len(dividersX) - 2]) {
+      for (j = [0:len(dividersY) - 2]) {
+        translate([dividersX[i] + wallThickness, dividersY[j] + wallThickness, wallThickness])
+          roundedBox([dividersX[i + 1] - dividersX[i] - wallThickness - (i == len(dividersX) - 2 ? wallThickness : 0), dividersY[j + 1] - dividersY[j] - wallThickness - (j == len(dividersY) - 2 ? wallThickness : 0), size[2]], corner - 1, bottomCorner=bottomCorner);
+      }
+    }
+  }
+
+  /*
+
+  containerWidthX = getContainerWidth(containersX, size[0] - wallThickness);
+
+  echo("dividersX ", dividersX);
+  echo("containerWidthX ", containerWidthX);
+  difference() {
+    roundedBox(size, corner);
+    if (len(dividersX) > 0) {
+      for (i = [0:len(dividersX) - 2]) {
+        echo("Box ", i, dividersX[i]);
+        echo("Width ", containerWidthX[i] - wallThickness);
+        translate([dividersX[i] + (i == 0 ? wallThickness : wallThickness / 2), wallThickness, wallThickness])
+          roundedBox([containerWidthX[i] - wallThickness, size[1] - wallThickness * 2, size[2]], corner - 1, bottomCorner=bottomCorner);
+      }
+    }
+  }
+
+*/
+
+  // rewrite this so that containersX and containersY uses roundedBox instead of cube so that all bottom corners can be rounded
+  /*
   if (hexBottom < 1) {
     difference() {
       roundedBox(size, corner);
@@ -225,30 +268,7 @@ module tokenBox(
       linear_extrude(3)
         text(txtLabel, size=txtSize, font=txtFont, halign="center", valign="center");
   }
-
-  if (is_list(containersX)) {
-    if (len(containersX) > 0) {
-      for (i = [0:len(containersX) - 1]) {
-        translate([containersX[i], 0, 0]) cube([wallThickness, size[1], size[2]]);
-      }
-    }
-  } else if (containersX > 1) {
-    for (i = [1:containersX - 1]) {
-      translate([i * size[0] / containersX, 0, 0]) cube([wallThickness, size[1], size[2]]);
-    }
-  }
-
-  if (is_list(containersY)) {
-    if (len(containersY) > 0) {
-      for (i = [0:len(containersY) - 1]) {
-        translate([0, containersY[i], 0]) cube([size[0], wallThickness, size[2]]);
-      }
-    }
-  } else if (containersY > 1) {
-    for (i = [1:containersY - 1]) {
-      translate([0, i * size[1] / containersY, 0]) cube([size[0], wallThickness, size[2]]);
-    }
-  }
+*/
 }
 
 module hexPlane(radius, x, y, height) {
