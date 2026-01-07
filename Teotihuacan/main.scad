@@ -52,7 +52,7 @@ module startingTiles() {
 
 // Discovery tiles
 module discoveryTiles() {
-  tokenBox(size=[284 / 2, lane_width, layer1_height], hexBottom=hex_bottom, corner=3);
+  tokenBox(size=[lane_width, 284 / 2, layer1_height], hexBottom=hex_bottom, corner=3);
 }
 
 // Buildings (white houses) + Calendar disks + player order tokens

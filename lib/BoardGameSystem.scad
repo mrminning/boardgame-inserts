@@ -209,8 +209,6 @@ module tokenBox(
   dividersX = getDividers(containersX, size[0]);
   dividersY = getDividers(containersY, size[1]);
 
-  // Todo: Hex bottom
-
   difference() {
     roundedBox(size, corner);
     for (i = [0:len(dividersX) - 2]) {
@@ -218,6 +216,13 @@ module tokenBox(
         translate([dividersX[i] + wallThickness, dividersY[j] + wallThickness, wallThickness])
           roundedBox([dividersX[i + 1] - dividersX[i] - wallThickness - (i == len(dividersX) - 2 ? wallThickness : 0), dividersY[j + 1] - dividersY[j] - wallThickness - (j == len(dividersY) - 2 ? wallThickness : 0), size[2]], corner - 1, bottomCorner=bottomCorner);
       }
+    }
+    if (hexBottom > 0) {
+      translate([3, 3, -1])
+        intersection() {
+          roundedBox([size[0] - 6, size[1] - 6, wallThickness * 2], corner - 1);
+          hexPlane(hexBottom, size[0], size[1], wallThickness * 2);
+        }
     }
   }
 

@@ -102,6 +102,8 @@ cd Red_Cathedral
 ## Scythe
 Insert for Scythe.
 
+![Insert](/lib/images/Scythe.png)
+
 Build STLs with script
 ```
 cd Scythe
@@ -110,6 +112,14 @@ cd Scythe
 
 ## Teotihucan
 Insert for Teotihucan.
+
+![Insert](/lib/images/Teotihuacan.png)
+
+Build STLs with script
+```
+cd Teotihuacan
+./buildAll.sh
+```
 
 ## lib
 Modules for designing board game inserts. Based on https://github.com/beavisCZ/BoardGameSystem.
