@@ -225,55 +225,6 @@ module tokenBox(
         }
     }
   }
-
-  /*
-
-  containerWidthX = getContainerWidth(containersX, size[0] - wallThickness);
-
-  echo("dividersX ", dividersX);
-  echo("containerWidthX ", containerWidthX);
-  difference() {
-    roundedBox(size, corner);
-    if (len(dividersX) > 0) {
-      for (i = [0:len(dividersX) - 2]) {
-        echo("Box ", i, dividersX[i]);
-        echo("Width ", containerWidthX[i] - wallThickness);
-        translate([dividersX[i] + (i == 0 ? wallThickness : wallThickness / 2), wallThickness, wallThickness])
-          roundedBox([containerWidthX[i] - wallThickness, size[1] - wallThickness * 2, size[2]], corner - 1, bottomCorner=bottomCorner);
-      }
-    }
-  }
-
-*/
-
-  // rewrite this so that containersX and containersY uses roundedBox instead of cube so that all bottom corners can be rounded
-  /*
-  if (hexBottom < 1) {
-    difference() {
-      roundedBox(size, corner);
-      translate([wallThickness, wallThickness, wallThickness])
-        roundedBox([size[0] - wallThickness * 2, size[1] - wallThickness * 2, size[2]], corner - 1, bottomCorner=bottomCorner);
-      translate([size[0] / 2, size[1] / 2, 0.3])
-        linear_extrude(2)
-          text(txtLabel, size=txtSize, font=txtFont, halign="center", valign="center");
-    }
-  } else {
-    difference() {
-      roundedBox(size, corner);
-      translate([wallThickness, wallThickness, wallThickness])
-        roundedBox([size[0] - wallThickness * 2, size[1] - wallThickness * 2, size[2]], corner - 1);
-
-      translate([3, 3, -1])
-        intersection() {
-          roundedBox([size[0] - 6, size[1] - 6, wallThickness * 2], corner - 1);
-          hexPlane(hexBottom, size[0], size[1], wallThickness * 2);
-        }
-    }
-    translate([size[0] / 2, size[1] / 2, 0.3])
-      linear_extrude(3)
-        text(txtLabel, size=txtSize, font=txtFont, halign="center", valign="center");
-  }
-*/
 }
 
 module hexPlane(radius, x, y, height) {
