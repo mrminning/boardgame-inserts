@@ -1,12 +1,12 @@
 // Keyflower
 include <../lib/BoardGameSystem.scad>;
 
-main_box_length = 308;// X
+main_box_length = 308; // X
 main_box_width = 218; // Y
 main_box_height = 64; // Z
 layer1_height = 34;
 layer2_height = main_box_height - layer1_height;
-last_lane_width = 308-241;
+last_lane_width = 308 - 241;
 empty_box_height = 69;
 hex_bottom = 6;
 no_hex = 0;
@@ -15,62 +15,62 @@ $fn = $preview ? 32 : 128;
 
 // Tiles: 69 * 80
 module tilesBox() {
-    tokenBox(size=[85, 218, main_box_height], wallThickness=wallThickness, hexBottom=no_hex, corner=3, roundedBottom=true);
+  tokenBox(size=[85, 218, main_box_height], wallThickness=wallThickness, hexBottom=no_hex, corner=3, bottomCorner=3);
 }
 
 // 6 dividers (spring, summer, autumn, winter, home, boat, turn order)
-module moduleTileDivider(label="Divider") {
-    straightDivider(size=[82,64,1.4], corner=3, txtLabel=label, txtSize=8, txtFont="Nimbus Roman No9 L");
+module moduleTileDivider(label = "Divider") {
+  straightDivider(size=[82, 64, 1.4], corner=3, txtLabel=label, txtSize=8, txtFont="Nimbus Roman No9 L");
 }
 
 module tileDividerSpring() {
-    moduleTileDivider("Spring");
-    }
+  moduleTileDivider("Spring");
+}
 module tileDividerSummer() {
-    moduleTileDivider("Summer");
-    }
+  moduleTileDivider("Summer");
+}
 module tileDividerAutumn() {
-    moduleTileDivider("Autumn");
-    }
+  moduleTileDivider("Autumn");
+}
 module tileDividerWinter() {
-    moduleTileDivider("Winter");
-    }
+  moduleTileDivider("Winter");
+}
 module tileDividerBoats() {
-    moduleTileDivider("Boats");
-    }
+  moduleTileDivider("Boats");
+}
 module tileDividerHome() {
-    moduleTileDivider("Home");
-    }
+  moduleTileDivider("Home");
+}
 module tileDividerTurn() {
-    moduleTileDivider("Turn order");
-    }
+  moduleTileDivider("Turn order");
+}
 
 // Home screens
 module homeScreensBox() {
-    tokenBox(size=[155, 145, main_box_height], wallThickness=wallThickness, corner=3, roundedBottom=true);
+  tokenBox(size=[155, 145, main_box_height], wallThickness=wallThickness, corner=3, bottomCorner=3);
 }
 
 // Meeple bag
 module meepleBagBox() {
-    tokenBox(size=[155, 217-145, main_box_height], wallThickness=wallThickness, hexBottom=no_hex, corner=3, roundedBottom=true);
+  tokenBox(size=[155, 217 - 145, main_box_height], wallThickness=wallThickness, hexBottom=no_hex, corner=3, bottomCorner=3);
 }
 
 // Skill tiles
 module skillTilesBox() {
-    tokenBox(size=[last_lane_width, 88,  layer1_height], hexBottom=no_hex, corner=3);
+  tokenBox(size=[last_lane_width, 88, layer1_height], hexBottom=no_hex, corner=3);
 }
 
 // Green meeples
 module greenMeeplesBox() {
-    tokenBox(size=[last_lane_width, 88,  layer1_height], hexBottom=no_hex, corner=3);
+  tokenBox(size=[last_lane_width, 88, layer1_height], hexBottom=no_hex, corner=3);
 }
 
 // Waving meeple + Keymelequin
 module otherMeeplesBox() {
-    tokenBox(size=[last_lane_width, 40, layer1_height], corner=3);
+  tokenBox(size=[last_lane_width, 40, layer1_height], corner=3);
 }
 
 // 4 Resources
 module resourcesBox() {
-    tokenBox(size=[last_lane_width, main_box_width, layer2_height], wallThickness=wallThickness, hexBottom=0, corner=3, containersX=1, containersY=4, roundedBottom=true);
+  tokenBox(size=[last_lane_width, main_box_width, layer2_height], wallThickness=wallThickness, hexBottom=0, corner=3, containersX=1, containersY=4, bottomCorner=3);
 }

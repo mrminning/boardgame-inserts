@@ -156,10 +156,10 @@ module cutoutFiller(cutoutWidth = 20, corner = 3, cutoutHeight = 20, wallThickne
 }
 
 /*full box with rounded corners*/
-module roundedBox(size = [100, 100, 20], corner = 3, sidesOnly = true) {
+module roundedBox(size = [100, 100, 20], corner = 3, bottomCorner = 0) {
   if (corner > 0) {
-    $fn = 32;
-    if (sidesOnly) {
+    //$fn = 32;
+    if (bottomCorner == 0) {
       hull() {
         translate([corner, corner, 0])
           cylinder(r=corner, h=size[2]);
@@ -172,10 +172,10 @@ module roundedBox(size = [100, 100, 20], corner = 3, sidesOnly = true) {
       }
     } else {
       hull() {
-        translate([corner, corner, corner]) sphere(r=corner);
-        translate([size[0] - corner, corner, corner]) sphere(r=corner);
-        translate([size[0] - corner, size[1] - corner, corner]) sphere(r=corner);
-        translate([corner, size[1] - corner, corner]) sphere(r=corner);
+        translate([bottomCorner, bottomCorner, bottomCorner]) sphere(r=bottomCorner);
+        translate([size[0] - bottomCorner, bottomCorner, bottomCorner]) sphere(r=bottomCorner);
+        translate([size[0] - bottomCorner, size[1] - bottomCorner, bottomCorner]) sphere(r=bottomCorner);
+        translate([bottomCorner, size[1] - bottomCorner, bottomCorner]) sphere(r=bottomCorner);
         translate([corner, corner, corner]) cylinder(r=corner, h=size[2] - corner);
         translate([size[0] - corner, corner, corner]) cylinder(r=corner, h=size[2] - corner);
         translate([size[0] - corner, size[1] - corner, corner]) cylinder(r=corner, h=size[2] - corner);
@@ -186,6 +186,12 @@ module roundedBox(size = [100, 100, 20], corner = 3, sidesOnly = true) {
     cube(size);
   }
 }
+
+// Calculate dividers for tokenBox
+function getDividers(containers, length) =
+  is_list(containers) ?
+    [for (i = [0:len(containers) + 1]) i == 0 ? 0 : i == len(containers) + 1 ? length : containers[i - 1]]
+  : [for (i = [0:containers]) i == i ? (length / containers) * i : 0];
 
 /*tokenBox*/
 module tokenBox(
@@ -198,58 +204,25 @@ module tokenBox(
   txtLabel = "",
   txtSize = 8,
   txtFont = "Arial",
-  roundedBottom = false
+  bottomCorner = 0
 ) {
-  if (hexBottom < 1) {
-    difference() {
-      roundedBox(size, corner);
-      translate([wallThickness, wallThickness, wallThickness]) if (roundedBottom) {
-        roundedBox([size[0] - wallThickness * 2, size[1] - wallThickness * 2, size[2]], corner - 1, sidesOnly=false);
-      } else {
-        roundedBox([size[0] - wallThickness * 2, size[1] - wallThickness * 2, size[2]], corner - 1);
-      }
-      translate([size[0] / 2, size[1] / 2, 0.3])
-        linear_extrude(2)
-          text(txtLabel, size=txtSize, font=txtFont, halign="center", valign="center");
-    }
-  } else {
-    difference() {
-      roundedBox(size, corner);
-      translate([wallThickness, wallThickness, wallThickness])
-        roundedBox([size[0] - wallThickness * 2, size[1] - wallThickness * 2, size[2]], corner - 1);
+  dividersX = getDividers(containersX, size[0]);
+  dividersY = getDividers(containersY, size[1]);
 
+  difference() {
+    roundedBox(size, corner);
+    for (i = [0:len(dividersX) - 2]) {
+      for (j = [0:len(dividersY) - 2]) {
+        translate([dividersX[i] + wallThickness, dividersY[j] + wallThickness, wallThickness])
+          roundedBox([dividersX[i + 1] - dividersX[i] - wallThickness - (i == len(dividersX) - 2 ? wallThickness : 0), dividersY[j + 1] - dividersY[j] - wallThickness - (j == len(dividersY) - 2 ? wallThickness : 0), size[2]], corner - 1, bottomCorner=bottomCorner);
+      }
+    }
+    if (hexBottom > 0) {
       translate([3, 3, -1])
         intersection() {
           roundedBox([size[0] - 6, size[1] - 6, wallThickness * 2], corner - 1);
           hexPlane(hexBottom, size[0], size[1], wallThickness * 2);
         }
-    }
-    translate([size[0] / 2, size[1] / 2, 0.3])
-      linear_extrude(3)
-        text(txtLabel, size=txtSize, font=txtFont, halign="center", valign="center");
-  }
-
-  if (is_list(containersX)) {
-    if (len(containersX) > 0) {
-      for (i = [0:len(containersX) - 1]) {
-        translate([containersX[i], 0, 0]) cube([wallThickness, size[1], size[2]]);
-      }
-    }
-  } else if (containersX > 1) {
-    for (i = [1:containersX - 1]) {
-      translate([i * size[0] / containersX, 0, 0]) cube([wallThickness, size[1], size[2]]);
-    }
-  }
-
-  if (is_list(containersY)) {
-    if (len(containersY) > 0) {
-      for (i = [0:len(containersY) - 1]) {
-        translate([0, containersY[i], 0]) cube([size[0], wallThickness, size[2]]);
-      }
-    }
-  } else if (containersY > 1) {
-    for (i = [1:containersY - 1]) {
-      translate([0, i * size[1] / containersY, 0]) cube([size[0], wallThickness, size[2]]);
     }
   }
 }

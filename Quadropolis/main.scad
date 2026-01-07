@@ -11,5 +11,5 @@ $fn = $preview ? 32 : 128;
 
 // Energy + Inhabitants
 module energyInhabitants() {
-  tokenBox(size=[main_box_length, main_box_width, main_box_height], containersX=2, hexBottom=no_hex, corner=3, roundedBottom=true);
+  tokenBox(size=[main_box_length, main_box_width, main_box_height], containersX=2, hexBottom=no_hex, corner=3, bottomCorner=3);
 }
