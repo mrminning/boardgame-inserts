@@ -110,6 +110,18 @@ cd Scythe
 ./buildAll.sh
 ```
 
+## Tekhenu
+Insert for Tekhenu.
+
+![Insert](/lib/images/Tekhenu.png)
+
+Build STLs with script
+```
+cd Tekhenu
+./buildAll.sh
+```
+
+
 ## Teotihucan
 Insert for Teotihucan.
 
