@@ -47,7 +47,7 @@ module goldScribeFaithBox() {
 
 // Obelisk 118 x 40 x 40
 module obeliskBox() {
-  tokenBox(size=[185, 42, lane1_height], hexBottom=no_hex, corner=corner, bottomCorner=bottomCorner);
+  tokenBox(size=[185, 43, lane1_height], hexBottom=no_hex, corner=corner, bottomCorner=bottomCorner);
 }
 
 // Pillar tiles
