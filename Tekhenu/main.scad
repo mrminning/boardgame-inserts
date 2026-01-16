@@ -47,20 +47,20 @@ module goldScribeFaithBox() {
 
 // Obelisk 118 x 40 x 40
 module obeliskBox() {
-  tokenBox(size=[185, 42, lane1_height], hexBottom=no_hex, corner=corner, bottomCorner=bottomCorner);
+  tokenBox(size=[185, 43, lane1_height], hexBottom=no_hex, corner=corner, bottomCorner=bottomCorner);
+}
+
+// Solo: Botankhamun action tiles + Deben + progressmarker
+module soloComponentsBox() {
+  tokenBox(size=[100, 42, lane1_height], hexBottom=no_hex, corner=corner, bottomCorner=0);
 }
 
 // Pillar tiles
 module pillarTilesBox() {
-  tokenBox(size=[100, 42, lane1_height], hexBottom=no_hex, corner=corner, bottomCorner=0);
+  tokenBox(size=[100, 80, lane1_height], hexBottom=no_hex, corner=corner, bottomCorner=bottomCorner);
 }
 
-// Horus bonus tiles
-module horusBonusTilesBox() {
-  tokenBox(size=[100, 80, layer1_height], hexBottom=no_hex, corner=corner, bottomCorner=bottomCorner);
-}
-
-// Cards Starting, Destiny (64 x 41) + Scoring markers
+// Cards Starting, Destiny (64 x 41) + Scoring markers + Horus bonus tiles
 module cardsStartingDestinyScoringMarkersBox() {
   cardBox(size=[105, 68, player_boards_height], containers=2, cutoutWidth=20, corner=2.5);
   translate([0, 68 - wallThickness, 0])
@@ -87,9 +87,4 @@ module playerBox() {
 // Cards Blessing, Technology, Decree, Starting, Destiny (64 x 41)
 module cardsBox() {
   cardBox(size=[180, 80, layer1_height], containers=3, cutoutWidth=20, corner=corner);
-}
-
-// Solo: Botankhamun action tiles + Deben + progressmarker
-module soloComponentsBox() {
-  tokenBox(size=[100, 80, layer2_height], hexBottom=no_hex, corner=corner, bottomCorner=0);
 }
