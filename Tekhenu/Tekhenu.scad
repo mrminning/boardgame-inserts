@@ -2,10 +2,10 @@
 include <main.scad>;
 
 // Layer 1
-pillarTilesBox();
+soloComponentsBox();
 
 translate([0, 43, 0])
-  horusBonusTilesBox();
+  pillarTilesBox();
 
 translate([0, 124, 0])
   goldScribeFaithBox();
@@ -22,9 +22,6 @@ translate([110, 43, 0])
 // Layer 2
 translate([300, 124, 0])
   diceDrawBagBox();
-
-translate([300, 43, 0])
-  soloComponentsBox();
 
 translate([405, 43, 0])
   playerBox();
