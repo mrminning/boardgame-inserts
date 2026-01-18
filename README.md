@@ -21,6 +21,17 @@ cd Black_Orchestra
 ./buildAll.sh
 ```
 
+## Calico
+Insert for Calico
+
+![Insert](/lib/images/Calico.png)
+
+Build STLs with script
+```
+cd Calico
+./buildAll.sh
+```
+
 ## Carson City
 Insert for Carson City Big Box
 
