@@ -21,8 +21,8 @@ cd Black_Orchestra
 ./buildAll.sh
 ```
 
-## Boonlage
-Insert for Boonlage.
+## Boonlake
+Insert for Boonlake.
 
 ![Insert](/lib/images/Boonlake.png)
 
