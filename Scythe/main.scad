@@ -50,10 +50,23 @@ module dialsCardsBox() {
   translate([0, 120, 0]) cube([75, wallThickness, 18]);
 }
 
+// Power dials & Cardsmaps: Factory, Faction tiles, 
+module dialsMapsBox() {
+  tokenBox(size=[228, 209, 20], hexBottom=no_hex, corner=3);
+}
+
 // Encounter tokens
-module encountertokensBox() {
+module smalltokensBox() {
   player_box_height = 40;
   player_box_width = 84.5;
+  depth = 25;
+  tokenBox(size=[player_box_width, depth, player_box_height], hexBottom=no_hex, corner=3);
+}
+
+// Encounter tokens
+module encountertokensBox() {
+  player_box_height = 20;
+  player_box_width = 61;
   depth = 25;
   tokenBox(size=[player_box_width, depth, player_box_height], hexBottom=no_hex, corner=3);
 }
@@ -66,7 +79,7 @@ module resourceBox() {
   tokenBox(size=[player_box_width, player_box_length, player_box_height], hexBottom=no_hex, corner=3, containersX=2, containersY=2);
 }
 
-// Structure bonus tiles, Faction tile, Combat Cards     228 x 81 x 18
+// Structure bonus tiles, Combat Cards
 module structureBox() {
-  tokenBox(size=[228, 81, 18], hexBottom=no_hex, corner=3, wallThickness=2, containersX=[52, 104, 156]);
+    cardBox(size=[228, 53, 20], containers=3, cutoutWidth=30, corner=3);
 }

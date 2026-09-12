@@ -32,7 +32,9 @@ translate([341, 130.5, 0])
 translate([171, 261, 0])
   midsizecardsBox();
 translate([0, 261, 0])
-  encountertokensBox();
+  smalltokensBox();
+translate([85, 261, 0])
+  smalltokensBox();
 
 // Top layer 304mm
 color("white")
@@ -43,9 +45,12 @@ color("white")
 translate([0, 303, 0])
   cube([110, 280, 18]);
 
-// Structure bonus tiles, Faction tile, Combat Cards
+// Structure bonus tiles, Combat Cards
 translate([111, 300, 0])
   structureBox();
 
-translate([111, 381.5, 0])
-  dialsCardsBox();
+translate([111, 353.5, 0])
+  dialsMapsBox();
+
+translate([111, 261+300.5, 0])
+  encountertokensBox();
